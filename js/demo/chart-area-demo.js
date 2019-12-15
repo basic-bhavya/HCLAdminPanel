@@ -597,7 +597,7 @@ var drawChart = function (data, towerName, data2) {
     data: {
       labels: labels,
       datasets: [{
-        label: "Tower xxxxx",
+        label: "Tower X",
         lineTension: 0.5,
         backgroundColor: "rgba(2,117,216,0.2)",
         borderColor: "rgba(2,117,216,1)",
@@ -611,7 +611,7 @@ var drawChart = function (data, towerName, data2) {
         data: data,
       },
       {
-        label: "Tower xxxxx Current",
+        label: "Tower X Current",
         lineTension: 0.5,
         backgroundColor: "rgba(255,117,0,0.2)",
         borderColor: "rgba(255,117,0,1)",
@@ -666,7 +666,7 @@ var myLineChart = new Chart(ctx, {
   data: {
     labels: labels,
     datasets: [{
-      label: "Tower xxxxx",
+      label: "Tower X",
       lineTension: 0.5,
       backgroundColor: "rgba(2,117,216,0.2)",
       borderColor: "rgba(2,117,216,1)",
@@ -680,7 +680,7 @@ var myLineChart = new Chart(ctx, {
       data: plot1y,
     },
     {
-      label: "Tower yyyyy",
+      label: "Tower Y",
       data: plot2y,
       backgroundColor: "rgba(24, 31, 232, .3)",
       borderColor: "rgba(24, 31, 232, .7)",
@@ -694,7 +694,7 @@ var myLineChart = new Chart(ctx, {
       borderWidth: 2
     },
     {
-      label: "Tower zzzzz",
+      label: "Tower Z",
       data: plot3y,
       backgroundColor: 'rgba(25, 247, 25, .4)',
       borderColor: 'rgba(25, 247, 25, 1)',
@@ -708,7 +708,7 @@ var myLineChart = new Chart(ctx, {
       borderWidth: 2
     },
     {
-      label: "Tower bbbbb",
+      label: "Tower B",
       data: plot4y,
       backgroundColor: 'rgba(247, 25, 25, .5)',
       borderColor: 'rgba(247, 25, 25, 1)',
