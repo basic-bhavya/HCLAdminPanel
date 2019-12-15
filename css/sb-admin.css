@@ -10908,3 +10908,13 @@ body.sidebar-toggled footer.sticky-footer {
     width: calc(100% - 90px);
   }
 }
+
+
+/* CUSTOM */
+
+#accept{
+  position: relative;
+  top:50%;
+  left:50%;
+  transform: translateX(-50%) translateY(-50%);
+}

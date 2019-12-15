@@ -6,6 +6,8 @@ function initMap() {
   var chart = document.getElementById('indiChart');
   var dataID = 0;
   var towerNames = "XYZB";
+  var M;
+  var a;
 
   google.maps.event.addListener(map, "click",
     function (event) {
@@ -53,6 +55,7 @@ marker.addListener('click',function(){
       animation: google.maps.Animation.DROP,
       towerName: towerNames[dataID],
       dataID: dataID++,
+      state: 0
     })
 
     if (props.iconImage) {
@@ -60,12 +63,17 @@ marker.addListener('click',function(){
     }
 
     marker.addListener('click', function (e) {
-      var a = marker.towerName;
-
+      M = marker;
+      a = marker.towerName;
+      if(marker.state == 0){
       if(marker.dataID==0) drawChart(plot1y,a,plot1a);
       else if(marker.dataID==1) drawChart(plot2y,a,plot1a);
       else if(marker.dataID==2) drawChart(plot3y,a,plot1a);
       else if(marker.dataID==3) drawChart(plot4y,a,plot1a);
+      }
+      else{
+        drawChartM1();
+      }
     });
 
     marker.addListener('mouseover', function(){
@@ -77,7 +85,32 @@ marker.addListener('click',function(){
       marker.setAnimation(null);
     });
 
+    document.getElementById('accept').addEventListener('click',function(){
+      drawChartM1();
+    });
+
   }
+
+  var drawChartM1 = function(){
+    if(M.dataID==0) {
+      drawChart1(plot1y,a);
+      M.state = 1;
+    }
+
+    else if(M.dataID==1) {
+      drawChart1(plot2y,a);
+      M.state = 1;
+    }
+    else if(M.dataID==2) {
+      drawChart1(plot3y,a);
+      M.state = 1;
+    }
+    else if(M.dataID==3) {
+      drawChart1(plot4y,a);
+      M.state = 1;
+    }
+  }
+
 }
 
 // var coordlist = [
