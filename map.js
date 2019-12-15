@@ -1,9 +1,11 @@
 function initMap() {
 
-  var loc = { lat: 20.593683, lng: 78.962883 };
+  var loc = { lat: 20.5937, lng: 78.9629 };
   var map = new google.maps.Map(
-    document.getElementById('map'), { zoom: 4, center: loc });
-
+  document.getElementById('map'), { zoom: 4, center: loc });
+  var chart = document.getElementById('indiChart');
+  var dataID = 0;
+  var towerNames = "XYZB";
 
   google.maps.event.addListener(map, "click",
     function (event) {
@@ -27,44 +29,54 @@ marker.addListener('click',function(){
 
   addMarker({
     coords: { lat: 20.593683, lng: 78.962883 },
+    title: 'Tower X'
     // iconImage: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%3Fid%3DOIP.MnuDQu2TbBY0Sax8j0ku1gAAAA%26pid%3DApi&f=1'
   });
   addMarker({
     coords: { lat: 28.7041, lng: 77.1025 },
-    content: '<h1>Hello</h1>'
+    title: 'Tower Y'
   });
-
+  addMarker({
+    coords: {lat: 19.0760, lng: 72.8777 },
+    title: 'Tower Z'
+  })
+  addMarker({
+    coords: {lat: 26.2006, lng: 92.9376 },
+    title: 'Tower B'
+  })
 
   function addMarker(props) {
     var marker = new google.maps.Marker({
       position: props.coords,
       map: map,
-      title: 'this is the title'
+      title: props.title,
+      animation: google.maps.Animation.DROP,
+      towerName: towerNames[dataID],
+      dataID: dataID++,
     })
 
     if (props.iconImage) {
       marker.setIcon(props.iconImage);
     }
 
-    map.addListener('center_changed', function () {
-      // 3 seconds after the center of the map has changed, pan back to the
-      // marker.
-      window.setTimeout(function () {
-        map.panTo(marker.getPosition());
-      }, 3000);
-    })
-
     marker.addListener('click', function (e) {
-      
+      var a = marker.towerName;
+
+      if(marker.dataID==0) drawChart(plot1y,a,plot1a);
+      else if(marker.dataID==1) drawChart(plot2y,a,plot1a);
+      else if(marker.dataID==2) drawChart(plot3y,a,plot1a);
+      else if(marker.dataID==3) drawChart(plot4y,a,plot1a);
     });
 
-    function placeMarkerAndPanTo(latLng, map) {
-      var marker = new google.maps.Marker({
-        position: latLng,
-        map: map
-      });
-      map.panTo(latLng);
-    }
+    marker.addListener('mouseover', function(){
+      marker.setAnimation(google.maps.Animation.BOUNCE);
+    });
+
+
+    marker.addListener('mouseout',function(){
+      marker.setAnimation(null);
+    });
+
   }
 }
 
